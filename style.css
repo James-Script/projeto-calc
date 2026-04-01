@@ -1,25 +1,57 @@
+*{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: xx-large;
+}
+
+body{
+    background-color: #0b3480;
+}
+
 .calc{
     display: grid;
+    justify-self: center;
     justify-items: center;
     grid-template-rows:1fr 1fr ;
-  border: solid 2px;
- width: 160px;
- height: 300px;
-
+    border: solid 2px;
+    width: 300px;
+    height: 460px;
+    margin-top:20vh ;
+    background-color: #18366e;
+    border-radius: 6px;
+    
 }
-.box-visor{
+.box-visor {
+  position: relative;
+  display: flex;
+  flex-direction: column; /* 🔥 organiza em cima/baixo */
+  justify-content: end;
+  align-items: flex-end;
+
+  border: 2px solid;
+  width: 230px;
+  height: 60px;
+  margin: 20px;
+  background-color: white;
+  padding: 5px;
+}
+
+.visor{
+    align-self: end;
     display: flex;
-    border: 2px solid;
-    width: 110px;
-    height: 60px;
-    margin: 20px;
+     max-width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis; /* 🔥 corta com ... */
 }
 
 .numpad{
     display: grid;
+    width: 160px;
     grid-template-columns:1fr 1fr 1fr;
-   gap: 10px;
-  
+   gap: 12px;
+    padding-left:16px ;
+    padding-bottom: 20px;
+    text-align: center;
 }
 
 .pads{
@@ -27,15 +59,29 @@
     grid-template-columns: 1fr 1fr;
     justify-items: center;
     margin-left: 20px;
-     cursor: pointer;
+    
 }
 
 .aritmeticos{
    display: flex;
    flex-direction:column; 
    gap: 14px;
+   padding-bottom: 20px;
+  
 }
 
+.btn{
+    background-color: aliceblue;
+    border-radius: 4px;
+    padding: 6px;
+    cursor: pointer;
+    
+}
 
+.result {
+  
 
-
+  max-width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+}

@@ -1,129 +1,82 @@
-const visor = document.querySelector(".visor");
-const result = document.querySelector(".result");
-const buttons = document.querySelectorAll(".btn");
+const visor = document.querySelector('.visor');
+const result = document.querySelector('.result');
+const botoes = document.querySelectorAll('.btn');
 
-let currentInput = "0";
-let previousInput = "";
-let abrevfloat = previousInput.toFixed(2);
-let operator = null;
-let waitingForNextNumber = false;
+let valorAtual = '0';
+let valorAnterior = null;
+let operador = null;
 
-function updateDisplay() {
-  visor.textContent = currentInput;
-  result.textContent = "";
+function atualizarVisor() {
+  visor.textContent = valorAtual;
 }
 
-function inputNumber(number) {
-  if (waitingForNextNumber) {
-    currentInput = number;
-    waitingForNextNumber = false;
-  } else {
-    currentInput = currentInput === "0" ? number : currentInput + number;
-  }
-}
+// 🔥 função de cálculo
+function calcular() {
+  if (valorAnterior === null || operador === null) return;
 
-function inputDecimal() {
-  if (waitingForNextNumber) {
-    currentInput = "0.";
-    waitingForNextNumber = false;
-    return;
+  let a = parseFloat(valorAnterior);
+  let b = parseFloat(valorAtual);
+
+  switch (operador) {
+    case '+': valorAtual = (a + b).toString(); break;
+    case '-': valorAtual = (a - b).toString(); break;
+    case '*': valorAtual = (a * b).toString(); break;
+    case '/': valorAtual = (a / b).toString(); break;
   }
 
-  if (!currentInput.includes(".")) {
-    currentInput += ".";
-  }
+  valorAnterior = valorAtual;
 }
 
-function clearCalculator() {
-  currentInput = "0";
-  previousInput = "";
-  operator = null;
-  waitingForNextNumber = false;
-}
+botoes.forEach(botao => {
+  botao.addEventListener('click', () => {
 
-function toggleSign() {
-  if (currentInput !== "0") {
-    currentInput = (parseFloat(currentInput) * -1).toString();
-  }
-}
-
-function applyPercent() {
-  currentInput = (parseFloat(currentInput) / 100).toString();
-}
-
-function chooseOperator(nextOperator) {
-  if (operator && !waitingForNextNumber) {
-    calculate();
-  }
-
-  previousInput = currentInput;
-  operator = nextOperator;
-  waitingForNextNumber = true;
-}
-
-function calculate() {
-  if (operator === null || previousInput === "" || waitingForNextNumber) return;
-
-  const prev = parseFloat(previousInput);
-  const current = parseFloat(currentInput);
-  let computation;
-
-  switch (operator) {
-    case "+":
-      computation = prev + current;
-      break;
-    case "-":
-      computation = prev - current;
-      break;
-    case "*":
-      computation = prev * current;
-      break;
-    case "/":
-      computation = current === 0 ? "Erro" : prev / current;
-      break;
-    default:
-      return;
-  }
-
-  currentInput = computation.toString();
-  previousInput = "";
-  operator = null;
-  waitingForNextNumber = false;
-}
-
-buttons.forEach((button) => {
-  button.addEventListener("click", () => {
-    const number = button.dataset.number;
-    const action = button.dataset.action;
-    const selectedOperator = button.dataset.operator;
-
-    if (number !== undefined) {
-      if (number === ".") {
-        inputDecimal();
+    // 🔢 NÚMEROS
+    if (botao.dataset.number !== undefined) {
+      if (valorAtual === '0') {
+        valorAtual = botao.dataset.number;
       } else {
-        inputNumber(number);
+        valorAtual += botao.dataset.number;
       }
-    } else if (selectedOperator !== undefined) {
-      chooseOperator(selectedOperator);
-    } else if (action !== undefined) {
-      switch (action) {
-        case "clear":
-          clearCalculator();
-          break;
-        case "toggle-sign":
-          toggleSign();
-          break;
-        case "percent":
-          applyPercent();
-          break;
-        case "calculate":
-          calculate();
-          break;
+
+      atualizarVisor();
+
+      if (operador) {
+        result.textContent = valorAnterior + ' ' + operador + ' ' + valorAtual;
       }
     }
 
-    updateDisplay();
+    // ➕ OPERADORES
+    if (botao.dataset.operator !== undefined) {
+
+      if (operador !== null) {
+        calcular(); // 🔥 faz conta anterior antes de continuar
+      }
+
+      operador = botao.dataset.operator;
+      valorAnterior = valorAtual;
+      valorAtual = '0';
+
+      result.textContent = valorAnterior + ' ' + operador;
+      atualizarVisor();
+    }
+
+    // 🧹 LIMPAR
+    if (botao.dataset.action === 'clear') {
+      valorAtual = '0';
+      valorAnterior = null;
+      operador = null;
+      result.textContent = '';
+      atualizarVisor();
+    }
+
+    // 🟰 IGUAL
+    if (botao.dataset.action === 'calculate') {
+      calcular();
+
+      result.textContent = valorAtual + ' = ' ;
+      operador = null;
+      atualizarVisor();
+    }
+
   });
 });
-
-updateDisplay();
