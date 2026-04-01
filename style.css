@@ -1,0 +1,41 @@
+.calc{
+    display: grid;
+    justify-items: center;
+    grid-template-rows:1fr 1fr ;
+  border: solid 2px;
+ width: 160px;
+ height: 300px;
+
+}
+.box-visor{
+    display: flex;
+    border: 2px solid;
+    width: 110px;
+    height: 60px;
+    margin: 20px;
+}
+
+.numpad{
+    display: grid;
+    grid-template-columns:1fr 1fr 1fr;
+   gap: 10px;
+  
+}
+
+.pads{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-items: center;
+    margin-left: 20px;
+     cursor: pointer;
+}
+
+.aritmeticos{
+   display: flex;
+   flex-direction:column; 
+   gap: 14px;
+}
+
+
+
+

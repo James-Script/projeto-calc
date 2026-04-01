@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>Calculadora</title>
+</head>
+<body>
+  <div class="calc">
+    <section class="box-visor">
+      <div class="visor">0</div>
+      <div class="result"></div>
+    </section>
+
+    <section class="pads">
+      <section class="numpad">
+        <div class="btn" data-action="clear">AC</div>
+        <div class="btn" data-action="toggle-sign">+/-</div>
+        <div class="btn" data-action="percent">%</div>
+
+        <div class="btn" data-number="7">7</div>
+        <div class="btn" data-number="8">8</div>
+        <div class="btn" data-number="9">9</div>
+
+        <div class="btn" data-number="4">4</div>
+        <div class="btn" data-number="5">5</div>
+        <div class="btn" data-number="6">6</div>
+
+        <div class="btn" data-number="1">1</div>
+        <div class="btn" data-number="2">2</div>
+        <div class="btn" data-number="3">3</div>
+
+        <div class="btn zero" data-number="0">0</div>
+        <div class="btn" data-number=".">,</div>
+      </section>
+
+      <aside class="aritmeticos">
+        <div class="btn operator" data-operator="/">/</div>
+        <div class="btn operator" data-operator="*">X</div>
+        <div class="btn operator" data-operator="-">-</div>
+        <div class="btn operator" data-operator="+">+</div>
+        <div class="btn operator" data-action="calculate">=</div>
+      </aside>
+    </section>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
