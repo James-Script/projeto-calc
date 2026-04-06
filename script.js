@@ -30,7 +30,7 @@ function calcular() {
     case '/': resultado = a / b; break;
   }
 
-  // 🔧 correção de precisão + limite de 5 dígitos
+  // correção de precisão + limite de 5 dígitos
   resultado = parseFloat(resultado.toFixed(5));
 
   valorAtual = resultado.toString();
@@ -40,7 +40,7 @@ function calcular() {
 botoes.forEach(botao => {
   botao.addEventListener('click', () => {
 
-    // 🔢 NÚMEROS
+    // NÚMEROS
   if (botao.dataset.number !== undefined) {
 
 
@@ -61,7 +61,7 @@ botoes.forEach(botao => {
   }
 }
 
-    // ➕ OPERADORES
+    // OPERADORES
     if (botao.dataset.operator !== undefined) {
 
       if (operador !== null) {
@@ -76,7 +76,7 @@ botoes.forEach(botao => {
       atualizarVisor();
     }
 
-    // 🧹 LIMPAR
+    // LIMPAR
     if (botao.dataset.action === 'clear') {
       valorAtual = '0';
       valorAnterior = null;
@@ -85,19 +85,19 @@ botoes.forEach(botao => {
       atualizarVisor();
     }
 
-    // 🟰 IGUAL
+    // IGUAL
     if (botao.dataset.action === 'calculate') {
       calcular();
 
        result.textContent += ' =';  // mantém a conta
       operador = null;
 
-      novoNumero = true; // 🔥 importante
+      novoNumero = true; // importante
 
       atualizarVisor();
     }
 
-    // 🔁 +/- (trocar sinal)
+    // +/- (trocar sinal)
 if (botao.dataset.action === 'toggle-sign') {
   if (valorAtual !== '0') {
     valorAtual = valorAtual.startsWith('-')
@@ -108,7 +108,7 @@ if (botao.dataset.action === 'toggle-sign') {
   atualizarVisor();
 }
 
-// 💯 porcentagem
+// porcentagem
 if (botao.dataset.action === 'percent') {
   valorAtual = (parseFloat(valorAtual) / 100).toString();
   atualizarVisor();

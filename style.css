@@ -24,7 +24,7 @@ body{
 .box-visor {
   position: relative;
   display: flex;
-  flex-direction: column; /* 🔥 organiza em cima/baixo */
+  flex-direction: column; /* organiza em cima/baixo */
   justify-content: end;
   align-items: flex-end;
     border-radius: 4px;
@@ -44,19 +44,19 @@ body{
   white-space: nowrap;
   text-align: right;
   white-space: nowrap;
-  overflow-x: auto; /* 🔥 scroll horizontal */
+  overflow-x: auto; /* scroll horizontal */
 }
 
 .numpad{
   display: grid;
-  grid-template-columns: repeat(3, 45px); /* 🔥 tamanho fixo */
+  grid-template-columns: repeat(3, 45px); /* tamanho fixo */
   gap: 10px;
-  justify-content: center; /* 🔥 centraliza grid */
+  justify-content: center; /* centraliza grid */
 }
 
 .pads{
      display: grid;
-  grid-template-columns: auto auto; /* 🔥 melhor que 1fr 1fr */
+  grid-template-columns: auto auto; /* melhor que 1fr 1fr */
   gap: 16px;
   justify-content: center;
 }
@@ -78,13 +78,13 @@ body{
 
   width: 45px;
   height: 45px;
-  display: flex;              /* 🔥 ESSENCIAL */
+  display: flex;              /* ESSENCIAL */
   justify-content: center;    /* horizontal */
   align-items: center;        /* vertical */
 }
 .zero {
   grid-column: span 2;
-  width: 100%; /* 🔥 deixa o grid controlar */
+  width: 100%; /* deixa o grid controlar */
 }
 
 .btn:hover {
@@ -103,7 +103,7 @@ body{
   color: #555;
 
   white-space: nowrap;
-  overflow-x: auto; /* 🔥 nunca corta */
+  overflow-x: auto; /* nunca corta */
   overflow-y: hidden;
   
 }
